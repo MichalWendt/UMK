@@ -1,0 +1,26 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+int main()
+{
+    vector <int> tab;
+    vector <int> :: iterator pom;
+    int n, a;
+    cin >> n;
+    for(int i=0; i<n; ++i)
+    {
+        cin >> a;
+        tab.push_back(a);
+    }
+    sort(tab.begin(), tab.end());
+    pom = unique (tab.begin(), tab.end());
+    tab.resize(distance(tab.begin(),pom));
+    for(int i=0; i<pom; ++i)
+    {
+        cout << tab[i] << endl;
+    }
+    return 0;
+}

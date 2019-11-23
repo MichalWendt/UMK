@@ -1,0 +1,69 @@
+//Michal Wendt - Przeszukiwanie grafu wszerz
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include <queue>
+
+using namespace std;
+
+int main()
+{
+    int n,m;
+    int a, b;
+    int wierzcholek;
+    int pierwszy;
+    cout << "Ile wierzchokow? ";
+    cin >> n;
+    cout << "Ile drog? ";
+    cin >> m;
+    vector <int> odwiedzone(n);
+    vector <int> drogi[m];
+    queue <int> kolejka;
+    int sciezka[n];
+
+    for(int i = 0; i < m; ++i)
+    {
+        cout << "Prosze podac [" << i+1 << "] droge ";
+        cin >> a >> b;
+        drogi[a].push_back(b);
+        drogi[b].push_back(a);
+    }
+    for(int i = 0; i < n; ++i)
+    {
+       sciezka[i]=-1;
+    }
+
+    cout << "Z ktorego wierzcholka zaczynamy? ";
+    cin >> pierwszy;
+
+    kolejka.push(pierwszy);
+    wierzcholek = pierwszy;
+    odwiedzone[wierzcholek] = 1;
+
+    while(!kolejka.empty())
+    {
+        wierzcholek = kolejka.front();
+        kolejka.pop();
+        for(int i = 0; i < drogi[wierzcholek].size(); ++i)
+        {
+            if(0 == odwiedzone[drogi[wierzcholek][i]])
+            {
+              kolejka.push(drogi[wierzcholek][i]);
+              odwiedzone[drogi[wierzcholek][i]]=1;
+              sciezka[drogi[wierzcholek][i]]=wierzcholek;
+            }
+        }
+    }
+    cout << "Droga przejscia: "
+    for(int i = 0; i < n; ++i)
+    {
+        cout << sciezka[i] << " ";
+    }
+    cout << endl;
+    cout << "Ktore wierzcholki odwiedzilismy: "
+     for(int i = 0; i < n; ++i)
+    {
+        cout << odwiedzone[i] << " ";
+    }
+    return 0;
+}

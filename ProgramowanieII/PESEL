@@ -1,0 +1,204 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+int poprawny = 0;
+unsigned int PESEL[11];
+
+int rokuro()
+{
+    int RRRR;
+    int MM;
+    RRRR = 10 * PESEL[0];
+    RRRR += PESEL[1];
+    MM = 10 * PESEL[2];
+    MM += PESEL[3];
+    if (MM > 80 && MM < 93)
+    {
+        RRRR += 1800;
+    }
+    else if (MM > 0 && MM < 13)
+    {
+        RRRR += 1900;
+    }
+    else if (MM > 20 && MM < 33)
+    {
+        RRRR += 2000;
+    }
+    else if (MM > 40 && MM < 53)
+    {
+        RRRR += 2100;
+    }
+    else if (MM > 60 && MM < 73)
+    {
+        RRRR += 2200;
+    }
+    return RRRR;
+}
+
+int miesuro()
+{
+    int MM;
+    MM = 10 * PESEL[2];
+    MM += PESEL[3];
+    if (MM > 80 && MM < 93)
+    {
+        MM -= 80;
+    }
+    else if (MM > 20 && MM < 33)
+    {
+            MM -= 20;
+    }
+    else if (MM > 40 && MM < 53)
+    {
+        MM -= 40;
+    }
+    else if (MM > 60 && MM < 73)
+    {
+        MM -= 60;
+    }
+    return MM;
+}
+
+int dzienuro()
+{
+    int DD;
+    DD = 10 * PESEL[4];
+    DD += PESEL[5];
+    return DD;
+}
+
+char *plec()
+{
+    if (poprawny)
+    {
+        if (PESEL[9] % 2 == 1)
+        {
+            return "M";
+        }
+        else
+        {
+            return "K";
+        }
+    }
+    return 0;
+}
+
+int poprawsumy()
+{
+    int suma = 1 * PESEL[0] +
+    3 * PESEL[1] +
+    7 * PESEL[2] +
+    9 * PESEL[3] +
+    1 * PESEL[4] +
+    3 * PESEL[5] +
+    7 * PESEL[6] +
+    9 * PESEL[7] +
+    1 * PESEL[8] +
+    3 * PESEL[9];
+    suma %= 10;
+    suma = 10 - suma;
+    suma %= 10;
+    if (suma == PESEL[10])
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int poprawmies()
+{
+    int MM = miesuro();
+    if (MM > 0 && MM < 13)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int przestepny(int RRRR)
+{
+    if (RRRR % 4 == 0 && RRRR % 100 != 0 || RRRR % 400 == 0)
+        return 1;
+    else
+        return 0;
+}
+
+int poprawdzien()
+{
+    int RRRR = rokuro();
+    int MM = miesuro();
+    int DD = dzienuro();
+    if ((DD >0 && DD < 32) && (MM == 1 || MM == 3 || MM == 5 || MM == 7 || MM == 8 || MM == 10 || MM == 12))
+    {
+        return 1;
+    }
+    else if ((DD >0 && DD < 31) && (MM == 4 || MM == 6 || MM == 9 || MM == 11))
+    {
+        return 1;
+    }
+    else if ((DD >0 && DD < 30 && przestepny(RRRR)) || (DD >0 && DD < 29 && !przestepny(RRRR)))
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+void poprawnosc()
+{
+    if (poprawsumy() && poprawmies() && poprawdzien())
+    {
+        poprawny = 1;
+    }
+    else
+    {
+        poprawny = 0;
+    }
+}
+
+int main()
+{
+    string PESEL2;
+    cin >> PESEL2;
+    for(int i=0; i<11; ++i)
+    {
+        PESEL[i]=PESEL2[i]-'0';
+    }
+    poprawnosc();
+    if(poprawny == 1)
+    {
+        if(dzienuro()<10)
+        {
+            cout << "0" << dzienuro() << "-";
+        }
+        else
+        {
+            cout << dzienuro() << "-";
+        }
+        if(miesuro()<10)
+        {
+            cout << "0" << miesuro() << "-";
+        }
+        else
+        {
+            cout << miesuro() << "-";
+        }
+        cout << rokuro() << " ";
+        cout << plec();
+    }
+    else
+    {
+        cout << "BLAD";
+    }
+    return 0;
+}

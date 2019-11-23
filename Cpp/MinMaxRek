@@ -1,0 +1,66 @@
+#include <iostream>
+#include <queue>
+#include <stack>
+
+using namespace std;
+
+int minmax(int tab[], int p, int k, int &min, int &max)
+{
+    if(p==k)
+    {
+        min=p;
+        max=p;
+    }
+    if(k==p+1)
+    {
+        if(tab[p]<tab[k])
+        {
+            min=p;
+            max=k;
+        }
+        else
+        {
+            min=k;
+            max=p;
+        }
+    }
+    if(k>p+1)
+    {
+        int min1,min2,max1,max2,s;
+        s=(p+k)/2;
+        minmax(tab,p,s,min1,max1);
+        minmax(tab,s+1,k,min2,max2);
+        if(tab[min1]<tab[min2])
+        {
+            min=min1;
+        }
+        else
+        {
+            min=min2;
+        }
+        if(tab[max1]>tab[max2])
+        {
+            max=max1;
+        }
+        else
+        {
+            max=max2;
+        }
+    }
+}
+
+
+int main()
+{
+    int n;
+    cin >> n;
+    int tab[n];
+    int min,max;
+    for(int i=0; i<n; ++i)
+    {
+        cin >> tab[i];
+    }
+    minmax(tab,0,n-1,min,max);
+    cout << tab[min] << " " << tab[max];
+    return 0;
+}

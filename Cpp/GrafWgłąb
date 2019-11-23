@@ -1,0 +1,79 @@
+//Michal Wendt - Przeszukiwanie grafu w glab
+#include <iostream>
+#include <stack>
+#include <vector>
+
+using namespace std;
+
+void DFS (int u, int &time, int *ojcowie, int *wejscie, int *wyjscie, char *kolor, vector<int> *sasiedzi)
+{
+    kolor[u]='S';
+    time++;
+    wejscie[u]=time;
+    int v;
+    for(int i=0; i<sasiedzi[u].size();++i)
+    {
+        v=sasiedzi[u][i];
+        if(kolor[v]=='B')
+        {
+            cout << "ide do " << v << endl;
+            ojcowie[v]=u;
+            DFS(v,time,ojcowie,wejscie,wyjscie,kolor,sasiedzi);
+        }
+    }
+    kolor[u]='C';
+    time++;
+    wyjscie[u]=time;
+}
+
+int main()
+{
+    int n,m;
+    cout << "ile wierzcholkow ";
+    cin >> n;
+    cout << "ile polaczen ";
+    cin >> m;
+    vector<int> sasiedzi[n];
+    vector <int> wierzcholki;
+    int pocz;
+    int time=0;
+    int ojcowie[n];
+    int wejscie[n];
+    int wyjscie[n];
+    char kolor[n];
+    for(int i=0; i<m ;++i)
+    {
+        int a,b;
+        cin >> a >> b;
+        sasiedzi[a].push_back(b);
+        sasiedzi[b].push_back(a);
+    }
+    cout << "gdzie zaczac ";
+    cin >> pocz;
+    for (int i=0; i<n; ++i)
+    {
+        kolor[i]='B';
+        ojcowie[i]=-1;
+    }
+    DFS(pocz,time,ojcowie,wejscie,wyjscie,kolor,sasiedzi);
+    for(int i=0; i<n; ++i)
+    {
+        cout << kolor[i] << " ";
+    }
+    cout << endl;
+    for(int i=0; i<n; ++i)
+    {
+        cout << ojcowie[i] << " ";
+    }
+    cout << endl;
+    for(int i=0; i<n; ++i)
+    {
+        cout << wejscie[i] << " ";
+    }
+    cout << endl;
+    for(int i=0; i<n; ++i)
+    {
+        cout << wyjscie[i] << " ";
+    }
+    return 0;
+}

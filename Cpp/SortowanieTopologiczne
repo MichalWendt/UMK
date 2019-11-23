@@ -1,0 +1,63 @@
+//Michal Wendt - sortowanie topologiczne
+#include <iostream>
+#include <stack>
+#include <vector>
+#include <queue>
+
+using namespace std;
+
+int main()
+{
+    int n,m;
+    int sasiad;
+    int k;
+    cout << "ile wierzcholkow ";
+    cin >> n;
+    cout << "ile polaczen ";
+    cin >> m;
+    vector <int> sasiedzi[n];
+    queue <int> Q;
+    int ilesasiadow[n];
+
+    for(int i = 0; i < n; ++i)
+    {
+        ilesasiadow[i]=0;
+    }
+
+    for(int i=0; i < m; ++i)
+    {
+        int a, b;
+        cin >> a >> b;
+        sasiedzi[a].push_back(b);
+        ilesasiadow[b]++;
+    }
+
+    for(int i = 0; i < n; ++i)
+    {
+        if(ilesasiadow[i] == 0)
+        {
+            Q.push(i);
+        }
+    }
+
+    cout<<"Wierzcholki w posortowanej kolejnosci: ";
+    while(!Q.empty())
+    {
+        k = Q.front();
+        cout << k << " ";
+        for(int i = 0; i < sasiedzi[k].size(); ++i)
+        {
+            sasiad = sasiedzi[k][i];
+            if(ilesasiadow[sasiad] >= 0)
+            {
+                ilesasiadow[sasiad] = ilesasiadow[sasiad] - 1;
+                if(ilesasiadow[sasiad] == 0)
+                {
+                    Q.push(sasiad);
+                }
+            }
+        }
+        Q.pop();
+    }
+    return 0;
+}

@@ -1,0 +1,195 @@
+#include <iostream>
+
+using namespace std;
+
+struct node{
+    node* p;
+    node* l;
+    node* r;
+    int dane;
+};
+
+
+void print(node* r, int t)                      //pre order
+{
+    int i;
+    if(r != NULL)
+    {
+        for(i=0; i<t; ++i)
+        {
+            cout << "\t";
+        }
+        cout >> r->dane << endl;
+        print(r->l,t+1);
+        print(r->r,t+1);
+    }
+}
+
+void print(node* r, int t)                      //in order
+{
+    int i;
+    if(r != NULL)
+    {
+        print(r->l,t+1);
+        for(i=0; i<t; ++i)
+        {
+            cout << "\t";
+        }
+        cout >> r->dane << endl;
+        print(r->r,t+1);
+    }
+}
+
+void print(node* r, int t)                      //pre order
+{
+    int i;
+    if(r != NULL)
+    {
+        print(r->l,t+1);
+        print(r->r,t+1);
+        for(i=0; i<t; ++i)
+        {
+            cout << "\t";
+        }
+        cout >> r->dane << endl;
+    }
+}
+
+node* check(node* root, int x)
+{
+    if(root == NULL)
+        return NULL;
+
+    if(root -> dane == x)
+        return root;
+
+    if(root -> dane > x)
+        return check(root->l,x);
+
+    return check(root->r,x);
+}
+
+node* next (node* x)
+{
+    node* ret = x->p;
+    if(x->r != NULL)
+        return minimum(x->r)
+
+    while(ret != NULL && ret->l != x)
+    {
+        x = ret;
+        ret = x->p;
+    }
+    return ret;
+}
+
+node* prev (node* x)
+{
+    node* ret = x->p;
+    if(x->l != NULL)
+        return minimum(x->l)
+
+    while(ret != NULL && ret->r != x)
+    {
+        x = ret;
+        ret = x->p;
+    }
+    return ret;
+}
+
+node* minimum(node* root)
+{
+    if(root == NULL)
+        return NULL;
+    while(root->l != NULL)
+    {
+        root = root->l;
+    }
+    return root;
+}
+
+node* maximum(node* root)
+{
+    if(root == NULL)
+        return NULL;
+    while(root->r != NULL)
+    {
+        root = root->r;
+    }
+    return root;
+}
+
+node*add(node*root,intx)
+{
+    node* ret = root;
+    node* parent = NULL;
+    node* leaf = new node;
+    leaf->dane = x;
+    leaf->l = leaf->r = NULL;
+    while(root != NULL)
+    {
+        parent = root;
+        if(root->dane > x)
+        root = root->l;
+        else
+        root = root->r;
+    }
+    leaf->p = parent;
+    if(parent == NULL)
+    {
+        return leaf;
+    }
+    else
+    {
+        if(parent->dane > x)
+            parent->l=leaf;
+        else parent->r=leaf;
+    }
+    return ret;
+}
+
+node* del(node* root,node* toDel)
+{
+    node*y,*x; //USUWANY WIERZCHO£EK I JEGO DZIECKO
+    if(toDel == NULL) return root;
+    if(toDel->l == NULL || toDel->r == NULL)
+        y =toDel;
+    else y = next(toDel);
+    if(y->l != NULL) x =y->l;
+    else x =y->r;
+    if(x!=NULL) x->p = y->p; //PODPIÊCIE RODZICA
+    if(y->p==NULL)
+    {
+        root=x; //NOWY KORZEÑ
+    }
+    else
+    {
+        if(y ==y->p->l)y->p->l=x; //PODPIÊCIE
+    elsey->p->r=x;              //DZIECKA
+    }
+    if(y!=toDel) toDel->dane=y->dane; //KOPIA DANYCH
+    delete y;
+    return root;
+}
+int main()
+{
+    vector<node*> v;
+    node* n;
+    int m,i,x;
+    cin >> m;
+    for(int i = 0; i < m; ++i)
+    {
+        cin >> x;
+        n = new node;
+        n->dane = x;
+        n->p = (i!=0) ?v[i/2]:NULL;
+        v.push_back(n);
+    }
+    for(int i = 0; i < m; ++i)
+    {
+        n = v[i];
+        n->l = (i*2+1<m)?v[i*2+1]:NULL;
+        n->l = (i*2+2<m)?v[i*2+2]:NULL;
+    }
+    return 0;
+}

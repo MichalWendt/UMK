@@ -1,0 +1,350 @@
+/*Michal Wendt - smok wawelski*/
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+
+using namespace std;
+
+class smok
+{
+    public:
+	int pojemnosc_brzucha = 70000;
+	string kolor_skory = "zielony";
+	string wielkosc = "wielki";
+	string dlugosc_ogona = "10 metrow";
+	string stan = "zywy";
+	int ilosc_zebow = 102;
+	int zjedz(string kto, int waga);
+	string umrzyj()
+	{
+	    cout << zarycz() << endl;
+	    cout << "Smok: ";
+        return "UMIERAM!!!";
+	}
+	string zarycz()
+	{
+	    cout << "Smok: ";
+	    return "RYYYYYYYYYYK";
+	}
+	string pojaw_sie()
+	{
+	    cout << "Smok: ";
+		return "pojawiam sie";
+	}
+	int pij(int lyk_smoka);
+};
+
+class rycerz
+{
+	public:
+			string sprobuj_pokonac_smoka()
+			{
+			    cout << "Rycerz: ";
+			    return "walcz ze mna smoku";
+			}
+			string smiej_sie(string kto)
+			{
+			    cout << "Rycerz_" << kto << ": ";
+			    if(kto == "1")
+                {
+                    return  "Patrzcie go, smialek sie znalazl";
+                }
+			    if(kto == "2")
+                {
+                    return  "Nie wiesz, ze smoka nikt nie jest w stanie pokonac?";
+                }
+			    if(kto == "3")
+                {
+                    return  "Zabic juz wielu wybitnych wojakow! Jak mozesz sie z nimi rownac?";
+                }
+			}
+			string umrzyj()
+			{
+			    cout << "Rycerz: ";
+			    return "umieram za krola!!!";
+			}
+};
+
+class owca
+{
+    public:
+	string umrzyj()
+	{
+	    cout << "Owca: ";
+	    return "be....";
+	}
+	string becz()
+	{
+	    cout << "Owca: ";
+	    return "beeeee";
+	}
+};
+
+class szewczyk
+{
+    public:
+	string napchaj_owce()
+	{
+	    cout << "Szewczyk: ";
+	    return "Owca napchana siarka";
+	}
+	string zabij_owce()
+	{
+	    cout << "Szewczyk: ";
+	    return "Owca zabita";
+	}
+	string podloz_owce()
+	{
+	    cout << "Szewczyk: ";
+	    return "Owca podlozna pod grote";
+	}
+	string przemow()
+	{
+	    cout << "Szewczyk: ";
+	    return "Panie moj, mysle, ze jestem w stanie pokonac dreczacego Was smoka";
+	}
+	string poklon_sie()
+	{
+	    cout << "Szewczyk: ";
+	    return "Klaniam sie krolu";
+	}
+};
+
+class wisla
+{
+    public:
+	double ilosc_wody = 10000000;
+};
+
+class wiesniak
+{
+	string umrzyj()
+	{
+	    cout << "Wiesniak: ";
+	    return "aaaaaaaaaaaaaa to boli!!";
+	}
+	string wystrasz_sie()
+	{
+	    cout << "Wiesniak: ";
+	    return "aaaaaaaaaaaaaa to smok!!";
+	}
+	string uciekaj()
+	{
+	    cout << "Wiesniak: ";
+	    return "uciekam";
+	}
+};
+
+class krowa
+{
+    public:
+	string mucz()
+	{
+	    cout << "Krowa: ";
+	    return "muuuuu";
+	}
+	int ilosc_bydla = 100;
+};
+
+class krol
+{
+	public:
+		string rzadz()
+		{
+		    cout << "Krol: ";
+			return "rzadze";
+		}
+		string zgodz_sie()
+		{
+		    cout << "Krol: ";
+		    return "Dobrze, szewczyku. Pokonaj smoka, a zostaniesz sowicie nagrodzony";
+		}
+};
+
+int smok::zjedz(string kto, int waga)
+{
+	    rycerz rycerz1;
+		if(kto == "krowa")
+		{
+		    cout << "Smok zjadl: " << waga << "kg krow" << endl;
+			return pojemnosc_brzucha = pojemnosc_brzucha - waga;
+		}
+		if(kto == "owca")
+        {
+            stan = "spragniony";
+            return pojemnosc_brzucha = pojemnosc_brzucha - waga;
+        }
+        if(kto == "rycerz")
+		{
+		    cout << rycerz1.umrzyj() << endl;
+			return pojemnosc_brzucha = pojemnosc_brzucha - waga;
+		}
+}
+
+int smok::pij(int lyk_smoka)
+{
+    wisla wisla1;
+    cout << "Smok wypil: " << lyk_smoka << " wody na lyk" << endl;
+    wisla1.ilosc_wody = wisla1.ilosc_wody - lyk_smoka;
+    return pojemnosc_brzucha = pojemnosc_brzucha - lyk_smoka;
+}
+
+string narrator(int moment)
+{
+    cout << "Narrator: ";
+    switch(moment)
+    {
+        case 1:
+        return "Dawno temu, gdy polskimi ziemiami rzadzil krol Krak";
+
+        case 2:
+        return "W Krakowie pojawil sie smok";
+
+        case 3:
+        return "Smok zadomowil sie w jamie pod zamkiem i zadal, aby raz w tygodniu skladano mu ofiare w postaci krowy. Jezeli nie spelniono jego zachcianki, porywal ludzi";
+
+        case 4:
+        return "Na mieszkancow Krakowa padl blady strach, jednak znalazlo sie kilku smialkow, ktorzy twierdzili, ze zdolaja pokonac smoka.";
+
+        case 5:
+        return "Zarowno krol, jak i poddani stracili juz nadzieje na ratunek";
+
+        case 6:
+        return "Co tydzien stada bydla bolesnie sie kurczyly, gdyz smok wymagal zawsze najdorodniejszych sztuk. Martwiono sie, co bedzie, gdy pozre juz wszystkie krowy.";
+
+        case 7:
+        return "Gdy wydawalo sie, ze wszystko juz stracone i lud Krakowa czeka zaglada, na dworze Kraka pojawil sie ubogi szewczyk. ";
+
+        case 8:
+        return "W krolewskiej sali rozbrzmialy smiechy rycerzy.";
+
+        case 9:
+        return "Szewczyk odszedl, obmyslajac swoj plan. Niebawem wszystko mial juz przygotowane";
+
+        case 10:
+        return "Najciszej jak tylko potrafil zakradl sie do samego wejscia";
+
+        case 11:
+        return "Wkrotce z groty wyszedl smok, zwabiony zapachem swiezego miesa i dostrzegajac barana, natychmiast go pozarl";
+
+        case 12:
+        return "Siarka ukryta w zwierzeciu od razu zaczela dzialac, powodując u smoka ogromne pragnienie.";
+
+        case 13:
+        return "Rzucil sie w kierunku Wisly";
+
+        case 14:
+        return "I wtedy nagle rozlegl sie ogromny huk. Smok wypil tak duzo wody, ze po prostu pekl. ";
+
+        case 15:
+        return "Pomyslowy chlopiec zostal bohaterem calego miasta, a krol sowicie go wynagrodzil.";
+
+        case 16:
+        return "W Krakowie zas do dzis, u stop Wawelu, mozna zobaczyc Smocza Jame i ziejaca ogniem figure wawelskiego smoka, upamietniajaca bohaterski czyn szewczyka.";
+
+        case 17:
+        return "I tak kolejny dzien minal";
+    }
+}
+
+int main()
+{
+    srand(time(NULL));
+    int czymu = (rand()%2);
+    int czybe = (rand()%2);
+    int waga_krowy = ((rand()%250) + 700);
+    int ile_krow = ((rand()%5) + 1);
+    int lyk_smoka = ((rand()%50) + 250);
+    int aktualna;
+    string kto;
+
+	krol krol1;
+    smok smok1;
+    rycerz rycerz1;
+    rycerz rycerz2;
+    rycerz rycerz3;
+    krowa krowa1;
+    szewczyk szewczyk1;
+    owca owca1;
+
+    cout << narrator(1) << endl;
+    cout << krol1.rzadz() << endl;
+    cout << narrator(2) << endl;
+    cout << smok1.pojaw_sie() << endl;
+    cout << "specyfikacja smoka: " << endl;
+    cout << "dlugosc ogona: " << smok1.dlugosc_ogona << endl;
+    cout << "ilosc zebow: " << smok1.ilosc_zebow << endl;
+    cout << "kolor skory: " << smok1.kolor_skory << endl;
+    cout << "pojemnosc brzucha: " << smok1.pojemnosc_brzucha << " litrow" << endl;
+    cout << "wielkosc: " << smok1.wielkosc << endl;
+    cout << narrator(3) << endl;
+    /*tutaj jeszcze cos z wiesniakami*/
+    cout << narrator(4) << endl;
+    cout << rycerz1.sprobuj_pokonac_smoka() << endl;
+    cout << smok1.zarycz() << endl;
+    kto = "rycerz";
+    smok1.zjedz(kto, 100);
+    cout << narrator(5) << endl;
+    kto = "krowa";
+    cout << narrator(6) << endl;
+    while(smok1.stan == "zywy")
+    {
+        czymu = (rand()%2);
+        czybe = (rand()%2);
+        if(czymu)
+        {
+            cout << krowa1.mucz() << endl;
+        }
+        if(czybe)
+        {
+            cout << owca1.becz() << endl;
+        }
+        waga_krowy = ((rand()%250) + 700);
+        ile_krow = ((rand()%5) + 1);
+        smok1.zjedz(kto, waga_krowy * ile_krow);
+        krowa1.ilosc_bydla = krowa1.ilosc_bydla - ile_krow;
+        cout << "Pozostalo: " << krowa1.ilosc_bydla << " krow" << endl;
+        cout << smok1.pojemnosc_brzucha << endl;
+        if(krowa1.ilosc_bydla < 10)
+        {
+            cout << narrator(7) << endl;
+            cout << szewczyk1.poklon_sie() << endl;
+            cout << szewczyk1.przemow() << endl;
+            cout << narrator(8) << endl;
+            cout << rycerz1.smiej_sie("1") << endl;
+            cout << rycerz1.smiej_sie("2") << endl;
+            cout << rycerz1.smiej_sie("3") << endl;
+            cout << krol1.zgodz_sie() << endl;
+            cout << szewczyk1.poklon_sie() << endl;
+            cout << narrator(9) << endl;
+            cout << szewczyk1.zabij_owce() << endl;
+            cout << owca1.umrzyj() << endl;
+            cout << szewczyk1.napchaj_owce() << endl;
+            cout << narrator(10) << endl;
+            cout << szewczyk1.podloz_owce() << endl;
+            cout << narrator(11) << endl;
+            kto = "owca";
+            smok1.zjedz(kto, 60);
+            cout << narrator(12) << endl;
+            smok1.stan = "spragniony";
+            cout << narrator(13) << endl;
+            while(smok1.stan == "spragniony")
+            {
+                lyk_smoka = ((rand()%1000) + 550);
+                smok1.pij(lyk_smoka);
+                cout << smok1.pojemnosc_brzucha << endl;
+                if(smok1.pojemnosc_brzucha < 0)
+                {
+                    cout << narrator(14) << endl;
+                    cout << smok1.umrzyj() << endl;
+                    break;
+                }
+            }
+        }
+        cout << narrator(17) << endl;
+        smok1.pojemnosc_brzucha = smok1.pojemnosc_brzucha + 1000;
+    }
+    cout << narrator(15) << endl;
+    cout << narrator(16) << endl;
+	return 0;
+}

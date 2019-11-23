@@ -1,0 +1,44 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#include <cstdlib>
+
+using namespace std;
+
+double f(double x)
+{
+    return x*(x*(x-3)+2)-6;
+}
+
+double funk(double a, double b,double epsilon)
+{
+    if(f(a)==0.0)return a;
+    if(f(b)==0.0)return b;
+
+    double srodek;
+    while(abs(b-a)>epsilon)
+    {
+        srodek=(a+b)/2;
+        if(f(srodek)==0.0)return srodek;
+
+        if(f(srodek)*f(a)<0)
+        {
+            b=srodek;
+        }
+        else
+        {
+            a=srodek;
+        }
+    }
+    return (a+b)/2;
+}
+
+
+int main()
+{
+    double a,b;
+    cin >> a >> b;
+    double epsilon=0.000001;
+    cout <<fixed<< setprecision(8)<<funk(a,b,epsilon);
+    return 0;
+}

@@ -1,0 +1,29 @@
+#include <iostream>
+
+using namespace std;
+
+long long potegowanie (long long a, long long n)
+{
+    long long w=1;
+    while(n>0)
+    {
+        if(n%2==1)
+        {
+            w=w*a;
+        }
+        a=a*a;
+        n=n/2;
+    }
+    return w;
+}
+
+int main()
+{
+    long long a, n;
+    cout << "podstawa ";
+    cin >> a;
+    cout << "wykladnik ";
+    cin >> n;
+    cout << potegowanie(a,n);
+    return 0;
+}

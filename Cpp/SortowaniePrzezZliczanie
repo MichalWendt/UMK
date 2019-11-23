@@ -1,0 +1,52 @@
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+#include <fstream>
+
+using namespace std;
+
+int main()
+{
+    srand(time(NULL));
+    int n,maks;
+    cout << "ile liczb ";
+    cin >> n;
+    cout << "najwieksza z liczb ";
+    cin >> maks;
+    int tab[n];
+    int ile[maks+1];
+    int wynik[n];
+    fstream plik;
+    plik.open("posortowane.txt",ios::out);
+    cout << "nieposortowane" << endl;
+    for(int i=0; i<n; ++i)
+    {
+        tab[i]=rand()%maks;
+        cout << tab[i] << " ";
+    }
+    for(int i=0; i<maks; ++i)
+    {
+        ile[i]=0;
+    }
+    for(int i=0; i<n; ++i)
+    {
+        ile[tab[i]]++;
+    }
+    for(int i=1; i<=maks; ++i)
+    {
+        ile[i]=ile[i]+ile[i-1];
+    }
+    for(int i=n-1; i>=0; --i)
+    {
+        wynik[ile[tab[i]]-1]=tab[i];
+        ile[tab[i]]--;
+    }
+    cout << endl << "posortowane" << endl;
+    for(int i=0; i<n; ++i)
+    {
+        cout << wynik[i] << " ";
+        plik << wynik[i] << " ";
+    }
+    plik.close();
+    return 0;
+}

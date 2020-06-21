@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="353.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ListaLekowController">
+    <children>
+        <Button fx:id="zamknijButton" layoutX="342.0" layoutY="327.0" mnemonicParsing="false" onAction="#zamknij" prefHeight="25.0" prefWidth="142.0" text="Zamknij" />
+      <Label layoutX="206.0" layoutY="14.0" prefHeight="35.0" prefWidth="112.0" text="Spis lekow">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <TableView fx:id="spisLekow" layoutX="40.0" layoutY="48.0" prefHeight="273.0" prefWidth="444.0" />
+    </children>
+
+</AnchorPane>

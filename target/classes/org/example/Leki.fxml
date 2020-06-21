@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="975.0" spacing="20.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.LekController">
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <children>
+      <HBox prefHeight="29.0" prefWidth="935.0">
+         <children>
+            <Button fx:id="PacjenciButton" mnemonicParsing="false" onAction="#setPacjenci" prefHeight="35.0" prefWidth="160.0" text="Lista pacjentów" />
+            <Button fx:id="LekarzeButton" mnemonicParsing="false" onAction="#setLekarze" prefHeight="35.0" prefWidth="160.0" text="Lista lekarzy" />
+            <Button fx:id="LekiButton" mnemonicParsing="false" onAction="#setLeki" prefHeight="35.0" prefWidth="160.0" text="Lista leków" textFill="#14ae06" />
+            <Button fx:id="WizytyButton" mnemonicParsing="false" onAction="#setWizyty" prefHeight="35.0" prefWidth="160.0" text="Lista wizyt" />
+            <Button fx:id="UstawieniaButton" mnemonicParsing="false" onAction="#setOknoLekarz" prefHeight="35.0" prefWidth="160.0" text="Ustawienia konta" />
+            <Button fx:id="wylogujButton" mnemonicParsing="false" onAction="#wyloguj" prefHeight="35.0" prefWidth="160.0" text="Wyloguj" />
+         </children>
+      </HBox>
+      <HBox prefHeight="43.0" prefWidth="935.0">
+         <children>
+            <TextField fx:id="nazwa" prefHeight="25.0" prefWidth="188.0" promptText="Nazwa" />
+            <TextField fx:id="skład" promptText="Skład" />
+            <Button fx:id="filtrButtonLek" mnemonicParsing="false" onAction="#filtrLeki" prefHeight="25.0" prefWidth="72.0" text="Filtruj" />
+            <Button mnemonicParsing="false" onAction="#setOknoLeki" prefHeight="25.0" prefWidth="116.0" text="Edytuj zaznaczony" />
+            <Button mnemonicParsing="false" onAction="#setDodajLeki" text="Dodaj Lek" />
+            <Button mnemonicParsing="false" onAction="#usunLek" text="Usuń zaznaczony" />
+            <Label fx:id="status" textFill="#f20404" />
+         </children>
+      </HBox>
+      <Pane prefHeight="478.0" prefWidth="935.0">
+         <children>
+            <TableView fx:id="listLeki" layoutX="14.0" layoutY="14.0" prefHeight="454.0" prefWidth="919.0" />
+         </children></Pane>
+   </children>
+</VBox>

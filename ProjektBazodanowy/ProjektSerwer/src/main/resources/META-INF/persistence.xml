@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+             xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+    <persistence-unit name="MyUnit" transaction-type="RESOURCE_LOCAL">
+        <!-- Persistence provider -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <!-- Entity classes -->
+        <class>Doctors.Lekarz</class>
+        <class>Medicines.Lek</class>
+        <class>Patients.Pacjent</class>
+        <class>Apointment.Wizyta</class>
+        <class>Admins.Admin</class>
+        <properties>
+            <!-- The JDBC driver of your database -->
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+            <!-- The JDBC URL to the database instance -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres" />
+            <!-- The database username -->
+            <property name="javax.persistence.jdbc.user" value="postgres" />
+            <!-- The database password -->
+            <property name="javax.persistence.jdbc.password" value="postgres" />
+            <property name="hibernate.connection.autocommit" value="true"/>
+            <!--<property name="hibernate.show_sql" value="true" />-->
+            <property name="hibernate.connection.release_mode" value="auto" />
+            <property name="current_session_context_class" value="thread" />
+            <property name="hibernate.connection.autoReconnect" value="true" />
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+</persistence>

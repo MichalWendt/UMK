@@ -1,0 +1,66 @@
+ #include <iostream>
+
+using namespace std;
+
+struct drzewo{
+   int klucz;
+   drzewo *lewy,*prawy;
+};
+
+drzewo *x=NULL;
+
+void Insert(drzewo *&x, int klucz){
+   if(x==NULL){
+         x=new drzewo;
+         x->klucz=klucz;
+         x->lewy=NULL;
+         x->prawy=NULL;
+   }
+   else{
+      if(klucz>=x->klucz) Insert(x->prawy, klucz);
+      if(klucz<x->klucz) Insert(x->lewy, klucz);
+   }
+}
+
+void inorder(drzewo *x){
+   if(x!=NULL){
+         inorder(x->lewy);
+         cout<<x->klucz<<" ";
+         inorder(x->prawy);
+   }
+}
+
+void preorder(drzewo *x){
+   if(x!=NULL){
+         cout<<x->klucz<<" ";
+         preorder(x->lewy);
+         preorder(x->prawy);
+   }
+
+}
+
+void postorder(drzewo *x){
+   if (x!=NULL){
+         postorder(x->lewy);
+         postorder(x->prawy);
+         cout<<x->klucz<<" ";
+   }
+
+}
+
+int main()
+{
+    int a;
+    cin>>a;
+    while(a!=5){
+       Insert(x,a);
+       cin>>a;
+    }
+    inorder(x);
+    cout<<"-----------"<<endl;
+    preorder(x);
+    cout<<"-----------"<<endl;
+    postorder(x);
+    cout<<"-----------"<<endl;
+    return 0;
+}

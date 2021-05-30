@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1489567222 source:c:\users\student\desktop\15.03\nwp\main.cpp
+	<iostream>
+	<vector>
+	<string>
+
